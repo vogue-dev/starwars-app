@@ -1,0 +1,15 @@
+nav .container {
+	background-color: lightgoldenrodyellow;
+	height: 100px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+nav .container input {
+	width: 70%;
+	height: 40px;
+	text-align: center;
+	font-size: 18px;
+}

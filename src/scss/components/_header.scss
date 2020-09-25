@@ -1,0 +1,25 @@
+header .container {
+	height: 60px;
+	background-color: black;
+
+	display: flex;
+	align-items: center;
+}
+
+header .container .tagline,
+header .container .logo,
+header .container .login {
+	flex: 4;
+	text-align: center;
+	color: white;
+}
+
+header .container .login a {
+	color: white;
+	text-decoration: none;
+}
+
+header .container .logo img {
+	max-width: 100px;
+	height: auto;
+}

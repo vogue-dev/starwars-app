@@ -1,0 +1,24 @@
+.login__form {
+	position: relative;
+	text-align: center;
+	background-color: lightgray;
+	margin: auto;
+	padding: 30px;
+	top: 20px;
+
+	& form label {
+		display: flex;
+		flex-direction: column;
+		padding: 0 20px;
+		margin-bottom: 10px;
+	}
+
+	& form label input {
+		margin-bottom: 10px;
+	}
+
+	& button {
+		top: 10px;
+		position: relative;
+	}
+}
