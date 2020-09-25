@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 
 // import MainPage from './pages/MainPage';
@@ -58,7 +58,10 @@ const App = () => {
 		data.allFilms.films.filter((eachFilm) => eachFilm.title.includes(search));
 	};
 
-	const logoutOnClick = () => setAuth(false);
+	const logoutOnClick = () => {
+		alert('success!');
+		setAuth(false);
+	};
 
 	console.log('data', data);
 	return (
