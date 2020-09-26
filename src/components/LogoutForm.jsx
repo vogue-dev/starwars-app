@@ -1,7 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-const LogoutForm = React.memo(function LogoutForm({ onClickLogout }) {
+const LogoutForm = React.memo(function LogoutForm(params) {
+	const onClickLogout = () => {
+		alert('You logged Out!');
+		params.setAuth(false);
+		params.setSearch('');
+		params.setRedirect('fromLogoutPage');
+		params.setSearchHistory([]);
+	};
+
 	return (
 		<main>
 			<div className="container">

@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Error404 = () => {
-	return <div className="container">This is 404 page</div>;
+	return (
+		<div className="error404">
+			<img src="./img/error404.jpg" alt="error404"></img>
+		</div>
+	);
 };
 
 export default Error404;

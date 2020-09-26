@@ -1,10 +1,15 @@
 import React from 'react';
 import LogoutForm from '../components/LogoutForm';
 
-const LogoutPage = React.memo(function LogoutPage({ onClickLogout }) {
+const LogoutPage = React.memo(function LogoutPage(params) {
 	return (
 		<>
-			<LogoutForm onClickLogout={onClickLogout} />
+			<LogoutForm
+				setAuth={params.setAuth}
+				setSearch={params.setSearch}
+				setRedirect={params.setRedirect}
+				setSearchHistory={params.setSearchHistory}
+			/>
 			)}
 		</>
 	);

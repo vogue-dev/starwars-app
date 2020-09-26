@@ -4,10 +4,10 @@ import { useQuery, gql } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 
 // import MainPage from './pages/MainPage';
-import Items from './components/Items';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import Error404 from './pages/Error404';
+import Items from './components/Items';
 import Header from './components/Header';
 import FitlerDropDown from './components/FitlerDropDown';
 import Search from './components/Search';
@@ -30,14 +30,19 @@ const ALL_PERSONS = gql`
 const App = () => {
 	let { loading, data } = useQuery(ALL_PERSONS);
 
+	// let [thisData, setThisData] = useState(true);
 	let [isAuth, setAuth] = useState(false);
-	let [isRedirected, setRedirect] = useState(false);
+	let [isRedirected, setRedirect] = useState('');
 	let [isDroppedDown, setVisibleDropdown] = useState(false);
 	let [login, setLogin] = useState('');
 	let [pass, setPass] = useState('');
 	let [searchValue, setSearch] = useState('');
 	let [filtered, setFilter] = useState([]);
 	let [searchHistory, setSearchHistory] = useState([]);
+
+	// useEffect(() => {
+	// 	loading ? setThisData([]) : setThisData(data);
+	// }, [data, loading]);
 
 	const handleChange = (e) => {
 		const value = e.target.value;
@@ -56,7 +61,7 @@ const App = () => {
 			setLogin('');
 			setPass('');
 			setSearch('');
-			setRedirect(true);
+			setRedirect('fromLoginPage');
 		} else alert('Please, try again');
 	};
 
@@ -68,7 +73,6 @@ const App = () => {
 		);
 		setFilter(filtered);
 		setVisibleDropdown(true);
-		console.log(value);
 	};
 
 	const onClickDropDownFilter = (str, isHistiryPush) => {
@@ -85,17 +89,10 @@ const App = () => {
 		setDropDownClose(true);
 	};
 
-	const resetHistory = () => {
+	const onResetHistory = () => {
 		setSearchHistory([]);
 		setSearch('');
-	};
-
-	const onClickLogout = () => {
-		alert('success!');
-		setAuth(false);
-		setSearch('');
-		setRedirect(false);
-		setSearchHistory([]);
+		setFilter(data.allPeople.people);
 	};
 
 	const setDropDownClose = () => {
@@ -143,7 +140,7 @@ const App = () => {
 											<Button
 												variant="contained"
 												className="reset__history"
-												onClick={() => resetHistory()}>
+												onClick={() => onResetHistory()}>
 												Reset
 											</Button>
 										</aside>
@@ -167,7 +164,7 @@ const App = () => {
 					exact
 					path="/login"
 					render={() =>
-						isRedirected ? (
+						isRedirected === 'fromLoginPage' ? (
 							<Redirect to="/" />
 						) : (
 							<LoginPage
@@ -184,7 +181,18 @@ const App = () => {
 				<Route
 					exact
 					path="/logout"
-					render={() => <LogoutPage onClickLogout={onClickLogout} />}></Route>
+					render={() =>
+						isRedirected === 'fromLogoutPage' ? (
+							<Redirect to="/" />
+						) : (
+							<LogoutPage
+								setAuth={setAuth}
+								setSearch={setSearch}
+								setRedirect={setRedirect}
+								setSearchHistory={setSearchHistory}
+							/>
+						)
+					}></Route>
 				<Route component={Error404} />
 			</Switch>
 		</Router>

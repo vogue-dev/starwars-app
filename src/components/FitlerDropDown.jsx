@@ -1,12 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
-const FitlerDropDown = React.memo(function FitlerDropDown({
-	data,
-	isDroppedDown,
-	setDropDownClose,
-	onClickDropDownFilter,
-}) {
+const FitlerDropDown = React.memo(function FitlerDropDown(params) {
 	const sortRef = useRef();
+
+	// close dropdown window by clicking on missing area
 
 	useEffect(() => {
 		document.body.addEventListener('click', handleOutsideClick);
@@ -15,15 +12,17 @@ const FitlerDropDown = React.memo(function FitlerDropDown({
 	const handleOutsideClick = (e) => {
 		let path = e.path || (e.composedPath && e.composedPath()) || e.composedPath(e.target);
 		if (!path.includes(sortRef.current)) {
-			setDropDownClose(true);
+			params.setDropDownClose(true);
 		}
 	};
 
-	return isDroppedDown ? (
+	return params.isDroppedDown ? (
 		<div className="filter__dropped__down" ref={sortRef}>
 			<ul>
-				{data.map((eachPerson) => (
-					<li key={eachPerson.id} onClick={() => onClickDropDownFilter(eachPerson.name, true)}>
+				{params.data.map((eachPerson) => (
+					<li
+						key={eachPerson.id}
+						onClick={() => params.onClickDropDownFilter(eachPerson.name, true)}>
 						{eachPerson.name}
 					</li>
 				))}
