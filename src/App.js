@@ -151,7 +151,7 @@ const App = () => {
 												</div>
 											</section>
 										) : (
-											''
+											'Please login to see all content!'
 										)}
 									</div>
 								</div>
