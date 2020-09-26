@@ -1,32 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class LoginForm extends Component {
-	render() {
-		return (
-			<main>
-				<div className="container">
-					<div className="login__form col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-						<form>
-							<label>
-								<span>Login:</span>
-								<input
-									name="login"
-									type="text"
-									placeholder="Hint - admin"
-									value={this.props.login}
-									onChange={(event) => this.props.handleChange(event)}></input>
-								<span>Password: (Hint - 1111)</span>
-								<input
-									name="pass"
-									type="password"
-									value={this.props.pass}
-									onChange={(event) => this.props.handleChange(event)}></input>
-							</label>
-							<button onClick={(event) => this.props.checkLogin(event)}>Submit</button>
-						</form>
-					</div>
+const LoginForm = React.memo(function LoginForm({ login, pass, handleChange, checkLogin }) {
+	return (
+		<main>
+			<div className="container">
+				<div className="login__form col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+					<form>
+						<label>
+							<span>Login:</span>
+							<input
+								name="login"
+								type="text"
+								placeholder="Hint - admin"
+								value={login}
+								onChange={(event) => handleChange(event)}></input>
+							<span>Password: (Hint - 1111)</span>
+							<input
+								name="pass"
+								type="password"
+								value={pass}
+								onChange={(event) => handleChange(event)}></input>
+						</label>
+						<button onClick={(event) => checkLogin(event)}>Submit</button>
+					</form>
 				</div>
-			</main>
-		);
-	}
-}
+			</div>
+		</main>
+	);
+});
+export default LoginForm;

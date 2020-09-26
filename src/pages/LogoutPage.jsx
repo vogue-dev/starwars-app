@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LogoutForm from '../components/LogoutForm';
 
-export default class LogoutPage extends Component {
-	render() {
-		return (
-			<>
-				<LogoutForm logoutOnClick={this.props.logoutOnClick} />
-				)}
-			</>
-		);
-	}
-}
+const LogoutPage = React.memo(function LogoutPage({ logoutOnClick }) {
+	return (
+		<>
+			<LogoutForm logoutOnClick={logoutOnClick} />
+			)}
+		</>
+	);
+});
+
+export default LogoutPage;

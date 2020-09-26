@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LoginForm from '../components/LoginForm';
 
-export default class LoginPag extends Component {
-	render() {
-		return (
-			<>
-				<LoginForm
-					login={this.login}
-					pass={this.pass}
-					handleChange={this.props.handleChange}
-					checkLogin={this.props.checkLogin}
-				/>
-			</>
-		);
-	}
-}
+const LoginPage = React.memo(function LoginPage({ login, pass, handleChange, checkLogin }) {
+	return (
+		<>
+			<LoginForm login={login} pass={pass} handleChange={handleChange} checkLogin={checkLogin} />
+		</>
+	);
+});
+
+export default LoginPage;

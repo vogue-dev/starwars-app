@@ -1,15 +1,7 @@
-import React, { Component } from 'react';
-import Header from '../components/Header';
-import Search from '../components/Search';
+import React from 'react';
 
-export default class Error404 extends Component {
-	render() {
-		return (
-			<>
-				<Header />
-				<Search />
-				This is 404 page
-			</>
-		);
-	}
-}
+const Error404 = () => {
+	return <div className="container">This is 404 page</div>;
+};
+
+export default Error404;
