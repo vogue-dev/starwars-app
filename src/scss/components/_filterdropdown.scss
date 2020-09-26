@@ -1,0 +1,18 @@
+.filter__dropped__down {
+	background-color: lightgray;
+	position: absolute;
+	max-height: 100px;
+	overflow-y: scroll;
+	width: calc(80% - 21px);
+	top: 70px;
+	z-index: 1001;
+}
+
+.filter__dropped__down ul li {
+	padding: 5px 10px;
+}
+
+.filter__dropped__down ul li:hover {
+	background-color: gray;
+	cursor: pointer;
+}

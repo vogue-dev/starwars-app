@@ -1,10 +1,10 @@
 import React from 'react';
 import LogoutForm from '../components/LogoutForm';
 
-const LogoutPage = React.memo(function LogoutPage({ logoutOnClick }) {
+const LogoutPage = React.memo(function LogoutPage({ onClickLogout }) {
 	return (
 		<>
-			<LogoutForm logoutOnClick={logoutOnClick} />
+			<LogoutForm onClickLogout={onClickLogout} />
 			)}
 		</>
 	);

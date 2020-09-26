@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import Button from '@material-ui/core/Button';
 
 // import MainPage from './pages/MainPage';
 import Items from './components/Items';
@@ -8,6 +9,8 @@ import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import Error404 from './pages/Error404';
 import Header from './components/Header';
+import FitlerDropDown from './components/FitlerDropDown';
+import Search from './components/Search';
 
 import './scss/app.scss';
 
@@ -18,6 +21,7 @@ const ALL_PERSONS = gql`
 				name
 				gender
 				id
+				height
 			}
 		}
 	}
@@ -27,11 +31,13 @@ const App = () => {
 	let { loading, data } = useQuery(ALL_PERSONS);
 
 	let [isAuth, setAuth] = useState(false);
+	let [isRedirected, setRedirect] = useState(false);
+	let [isDroppedDown, setVisibleDropdown] = useState(false);
 	let [login, setLogin] = useState('');
 	let [pass, setPass] = useState('');
 	let [searchValue, setSearch] = useState('');
-	let [isRedirected, setRedirect] = useState(false);
 	let [filtered, setFilter] = useState([]);
+	let [searchHistory, setSearchHistory] = useState([]);
 
 	const handleChange = (e) => {
 		const value = e.target.value;
@@ -42,7 +48,7 @@ const App = () => {
 		} else setPass(value);
 	};
 
-	const checkLogin = (e) => {
+	const onLogin = (e) => {
 		e.preventDefault();
 		if (login === 'admin' && pass === '1111') {
 			alert('Login success!');
@@ -61,13 +67,39 @@ const App = () => {
 			eachPerson.name.toLowerCase().includes(value.toLowerCase())
 		);
 		setFilter(filtered);
+		setVisibleDropdown(true);
+		console.log(value);
 	};
 
-	const logoutOnClick = () => {
+	const onClickDropDownFilter = (str, isHistiryPush) => {
+		let arr = searchHistory;
+		if (isHistiryPush === true) {
+			arr.push(str);
+			setSearchHistory(arr);
+		}
+		let filtered = data.allPeople.people.filter((eachPerson) =>
+			eachPerson.name.toLowerCase().includes(str.toLowerCase())
+		);
+		setSearch(str);
+		setFilter(filtered);
+		setDropDownClose(true);
+	};
+
+	const resetHistory = () => {
+		setSearchHistory([]);
+		setSearch('');
+	};
+
+	const onClickLogout = () => {
 		alert('success!');
 		setAuth(false);
 		setSearch('');
 		setRedirect(false);
+		setSearchHistory([]);
+	};
+
+	const setDropDownClose = () => {
+		setVisibleDropdown(false);
 	};
 
 	return (
@@ -79,19 +111,41 @@ const App = () => {
 					path="/"
 					render={() => (
 						<>
-							<nav>
-								<div className="container">
-									<input
-										placeholder="Search..."
-										value={searchValue}
-										onChange={(e) => filterFilms(e)}></input>
-								</div>
-							</nav>
+							{isAuth ? (
+								<Search
+									filtered={filtered}
+									isDroppedDown={isDroppedDown}
+									setDropDownClose={setDropDownClose}
+									searchValue={searchValue}
+									filterFilms={filterFilms}
+									FitlerDropDown={FitlerDropDown}
+									setSearchHistory={setSearchHistory}
+									searchHistory={searchHistory}
+									seatchValue={searchValue}
+									setSearch={setSearch}
+									onClickDropDownFilter={onClickDropDownFilter}
+								/>
+							) : (
+								''
+							)}
 							<main>
 								<div className="container">
 									<div className="row">
 										<aside className="col-3">
 											<ul>Search History:</ul>
+											{searchHistory.map((eachElement) => (
+												<li
+													key={eachElement}
+													onClick={() => onClickDropDownFilter(eachElement, false)}>
+													{eachElement}
+												</li>
+											))}
+											<Button
+												variant="contained"
+												className="reset__history"
+												onClick={() => resetHistory()}>
+												Reset
+											</Button>
 										</aside>
 										{isAuth ? (
 											<section className="col-9">
@@ -121,7 +175,7 @@ const App = () => {
 								login={login}
 								pass={pass}
 								handleChange={handleChange}
-								checkLogin={checkLogin}
+								onLogin={onLogin}
 							/>
 						)
 					}
@@ -130,7 +184,7 @@ const App = () => {
 				<Route
 					exact
 					path="/logout"
-					render={() => <LogoutPage logoutOnClick={logoutOnClick} />}></Route>
+					render={() => <LogoutPage onClickLogout={onClickLogout} />}></Route>
 				<Route component={Error404} />
 			</Switch>
 		</Router>

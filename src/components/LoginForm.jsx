@@ -1,6 +1,7 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
-const LoginForm = React.memo(function LoginForm({ login, pass, handleChange, checkLogin }) {
+const LoginForm = React.memo(function LoginForm({ login, pass, handleChange, onLogin }) {
 	return (
 		<main>
 			<div className="container">
@@ -11,17 +12,19 @@ const LoginForm = React.memo(function LoginForm({ login, pass, handleChange, che
 							<input
 								name="login"
 								type="text"
-								placeholder="Hint - admin"
+								placeholder="admin"
 								value={login}
 								onChange={(event) => handleChange(event)}></input>
-							<span>Password: (Hint - 1111)</span>
+							<span>Password: 1111</span>
 							<input
 								name="pass"
 								type="password"
 								value={pass}
 								onChange={(event) => handleChange(event)}></input>
 						</label>
-						<button onClick={(event) => checkLogin(event)}>Submit</button>
+						<Button variant="contained" color="primary" onClick={(event) => onLogin(event)}>
+							Submit
+						</Button>
 					</form>
 				</div>
 			</div>

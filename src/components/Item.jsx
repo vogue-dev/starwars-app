@@ -4,12 +4,11 @@ const Item = React.memo(function Item({ eachPerson }) {
 	let gender = eachPerson.gender;
 
 	let imgSrc = '';
-	let maleImg = 'http://comic-cons.xyz/wp-content/uploads/Star-Wars-avatar-icon-Luke-Skywalker.png';
-	let femaleImg =
-		'http://comic-cons.xyz/wp-content/uploads/Star-Wars-avatar-icon-Princess-Leia.png';
-	let naImg = 'http://comic-cons.xyz/wp-content/uploads/Star-Wars-avatar-icon-R2D2.png';
-	let hermaphroditeImg =
-		'https://i.pinimg.com/originals/13/a9/20/13a9203c8ade09e700bbb4dc753014b2.png';
+	let maleImg = './img/male.png';
+	let femaleImg = './img/female.png';
+	let naImg = './img/na.png';
+	let hermaphroditeImg = './img/hermaphrodite.png';
+	let noneImg = './img/none.jpg';
 
 	if (gender === 'male') {
 		imgSrc = maleImg;
@@ -19,14 +18,18 @@ const Item = React.memo(function Item({ eachPerson }) {
 		imgSrc = naImg;
 	} else if (gender === 'hermaphrodite') {
 		imgSrc = hermaphroditeImg;
-	}
+	} else imgSrc = noneImg;
 
 	return (
-		<div className="item col-sm-12 col-md-6 col-lg-4" key={eachPerson.id}>
-			<img src={imgSrc} alt="male-img"></img>
+		<div className="item col-sm-12 col-md-6 col-lg-4">
+			<img src={imgSrc} alt=""></img>
 
 			<div>
-				<b>{eachPerson.name}</b>
+				<div>
+					<b>{eachPerson.name}</b>
+				</div>
+				<div>Gender: {eachPerson.gender}</div>
+				<div>Height: {eachPerson.height} sm</div>
 			</div>
 		</div>
 	);

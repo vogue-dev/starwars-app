@@ -1,11 +1,35 @@
-// import React from 'react';
+import React from 'react';
+import FitlerDropDown from './FitlerDropDown';
 
-// export default function Search({ filterFilms }) {
-// 	return (
-// 		<nav>
-// 			<div className="container">
-// 				<input placeholder="Search..." onChange={(event) => filterFilms(event)}></input>
-// 			</div>
-// 		</nav>
-// 	);
-// }
+export default function Search({
+	filtered,
+	isDroppedDown,
+	setDropDownClose,
+	searchValue,
+	setSearch,
+	filterFilms,
+	setSearchHistory,
+	searchHistory,
+	setFilter,
+	onClickDropDownFilter,
+}) {
+	return (
+		<nav>
+			<div className="container">
+				<input placeholder="Search..." value={searchValue} onChange={(e) => filterFilms(e)}></input>
+				<FitlerDropDown
+					data={filtered}
+					isDroppedDown={isDroppedDown}
+					setDropDownClose={setDropDownClose}
+					setSearchHistory={setSearchHistory}
+					searchHistory={searchHistory}
+					searchValue={searchValue}
+					setSearch={setSearch}
+					filterFilms={filterFilms}
+					setFilter={setFilter}
+					onClickDropDownFilter={onClickDropDownFilter}
+				/>
+			</div>
+		</nav>
+	);
+}
