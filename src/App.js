@@ -30,7 +30,6 @@ const ALL_PERSONS = gql`
 const App = () => {
 	let { loading, data } = useQuery(ALL_PERSONS);
 
-	// let [thisData, setThisData] = useState(true);
 	let [isAuth, setAuth] = useState(false);
 	let [isRedirected, setRedirect] = useState('');
 	let [isDroppedDown, setVisibleDropdown] = useState(false);
@@ -39,10 +38,6 @@ const App = () => {
 	let [searchValue, setSearch] = useState('');
 	let [filtered, setFilter] = useState([]);
 	let [searchHistory, setSearchHistory] = useState([]);
-
-	// useEffect(() => {
-	// 	loading ? setThisData([]) : setThisData(data);
-	// }, [data, loading]);
 
 	const handleChange = (e) => {
 		const value = e.target.value;
