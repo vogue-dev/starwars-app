@@ -7,7 +7,6 @@ import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import Error404 from './pages/Error404';
 import Header from './components/Header';
-import FitlerDropDown from './components/FitlerDropDown';
 
 import './scss/app.scss';
 
@@ -101,19 +100,15 @@ const App = () => {
 					render={() =>
 						isAuth ? (
 							<MainPage
-								loading={loading}
 								data={filtered}
+								loading={loading}
+								searchHistory={searchHistory}
+								onClickDropDownFilter={onClickDropDownFilter}
+								onResetHistory={onResetHistory}
 								isDroppedDown={isDroppedDown}
 								setDropDownClose={setDropDownClose}
 								searchValue={searchValue}
 								filterFilms={filterFilms}
-								FitlerDropDown={FitlerDropDown}
-								setSearchHistory={setSearchHistory}
-								searchHistory={searchHistory}
-								seatchValue={searchValue}
-								setSearch={setSearch}
-								onClickDropDownFilter={onClickDropDownFilter}
-								onResetHistory={onResetHistory}
 							/>
 						) : (
 							<div className="container text-center">

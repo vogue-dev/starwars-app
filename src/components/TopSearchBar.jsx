@@ -13,12 +13,6 @@ const Search = React.memo(function Search(params) {
 					data={params.data}
 					isDroppedDown={params.isDroppedDown}
 					setDropDownClose={params.setDropDownClose}
-					setSearchHistory={params.setSearchHistory}
-					searchHistory={params.searchHistory}
-					searchValue={params.searchValue}
-					setSearch={params.setSearch}
-					filterFilms={params.filterFilms}
-					setFilter={params.setFilter}
 					onClickDropDownFilter={params.onClickDropDownFilter}
 				/>
 			</div>

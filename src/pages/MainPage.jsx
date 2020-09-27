@@ -11,24 +11,12 @@ const MainPage = React.memo(function MainPage(params) {
 				setDropDownClose={params.setDropDownClose}
 				searchValue={params.searchValue}
 				filterFilms={params.filterFilms}
-				FitlerDropDown={params.FitlerDropDown}
-				setSearchHistory={params.setSearchHistory}
-				searchHistory={params.searchHistory}
-				seatchValue={params.searchValue}
-				setSearch={params.setSearch}
 				onClickDropDownFilter={params.onClickDropDownFilter}
 			/>
 			<MainBlock
 				data={params.data}
-				isDroppedDown={params.isDroppedDown}
-				setDropDownClose={params.setDropDownClose}
-				searchValue={params.searchValue}
-				filterFilms={params.filterFilms}
-				FitlerDropDown={params.FitlerDropDown}
-				setSearchHistory={params.setSearchHistory}
+				loading={params.loading}
 				searchHistory={params.searchHistory}
-				seatchValue={params.searchValue}
-				setSearch={params.setSearch}
 				onClickDropDownFilter={params.onClickDropDownFilter}
 				onResetHistory={params.onResetHistory}
 			/>

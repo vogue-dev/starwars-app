@@ -12,7 +12,7 @@ const MainBlock = React.memo(function MainBlock(params) {
 						onClickDropDownFilter={params.onClickDropDownFilter}
 						onResetHistory={params.onResetHistory}
 					/>
-					<Content data={params.data} />
+					<Content data={params.data} loading={params.loading} />
 				</div>
 			</div>
 		</main>
