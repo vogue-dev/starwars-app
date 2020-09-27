@@ -2,7 +2,7 @@ import React from 'react';
 import TopSearchBar from '../components/TopSearchBar';
 import MainBlock from '../components/MainBlock';
 
-const MainPage = (params) => {
+const MainPage = React.memo(function MainPage(params) {
 	return (
 		<>
 			<TopSearchBar
@@ -34,6 +34,6 @@ const MainPage = (params) => {
 			/>
 		</>
 	);
-};
+});
 
 export default MainPage;

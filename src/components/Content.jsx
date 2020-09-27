@@ -1,7 +1,7 @@
 import React from 'react';
 import Items from './Items';
 
-export default function Content(params) {
+const Content = React.memo(function Content(params) {
 	return (
 		<section className="col-9">
 			<div className="items row">
@@ -9,4 +9,6 @@ export default function Content(params) {
 			</div>
 		</section>
 	);
-}
+});
+
+export default Content;

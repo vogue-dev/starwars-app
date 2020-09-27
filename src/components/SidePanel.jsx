@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-export default function SidePanel(params) {
+const SidePanel = React.memo(function SidePanel(params) {
 	return (
 		<aside className="col-3">
 			<ul>Search History:</ul>
@@ -18,4 +18,6 @@ export default function SidePanel(params) {
 			</Button>
 		</aside>
 	);
-}
+});
+
+export default SidePanel;

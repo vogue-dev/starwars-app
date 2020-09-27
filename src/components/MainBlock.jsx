@@ -2,7 +2,7 @@ import React from 'react';
 import SidePanel from './SidePanel';
 import Content from './Content';
 
-export default function MainBlock(params) {
+const MainBlock = React.memo(function MainBlock(params) {
 	return (
 		<main>
 			<div className="container">
@@ -17,4 +17,6 @@ export default function MainBlock(params) {
 			</div>
 		</main>
 	);
-}
+});
+
+export default MainBlock;
