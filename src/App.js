@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
-import Button from '@material-ui/core/Button';
 
-// import MainPage from './pages/MainPage';
+import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import Error404 from './pages/Error404';
-import Items from './components/Items';
 import Header from './components/Header';
 import FitlerDropDown from './components/FitlerDropDown';
-import Search from './components/Search';
 
 import './scss/app.scss';
 
@@ -101,58 +98,29 @@ const App = () => {
 				<Route
 					exact
 					path="/"
-					render={() => (
-						<>
-							{isAuth ? (
-								<Search
-									filtered={filtered}
-									isDroppedDown={isDroppedDown}
-									setDropDownClose={setDropDownClose}
-									searchValue={searchValue}
-									filterFilms={filterFilms}
-									FitlerDropDown={FitlerDropDown}
-									setSearchHistory={setSearchHistory}
-									searchHistory={searchHistory}
-									seatchValue={searchValue}
-									setSearch={setSearch}
-									onClickDropDownFilter={onClickDropDownFilter}
-								/>
-							) : (
-								''
-							)}
-							<main>
-								<div className="container">
-									<div className="row">
-										<aside className="col-3">
-											<ul>Search History:</ul>
-											{searchHistory.map((eachElement) => (
-												<li
-													key={eachElement}
-													onClick={() => onClickDropDownFilter(eachElement, false)}>
-													{eachElement}
-												</li>
-											))}
-											<Button
-												variant="contained"
-												className="reset__history"
-												onClick={() => onResetHistory()}>
-												Reset
-											</Button>
-										</aside>
-										{isAuth ? (
-											<section className="col-9">
-												<div className="items row">
-													{loading ? 'Loading...' : <Items data={filtered} />}
-												</div>
-											</section>
-										) : (
-											'Please login to see all content!'
-										)}
-									</div>
-								</div>
-							</main>
-						</>
-					)}
+					render={() =>
+						isAuth ? (
+							<MainPage
+								loading={loading}
+								data={filtered}
+								isDroppedDown={isDroppedDown}
+								setDropDownClose={setDropDownClose}
+								searchValue={searchValue}
+								filterFilms={filterFilms}
+								FitlerDropDown={FitlerDropDown}
+								setSearchHistory={setSearchHistory}
+								searchHistory={searchHistory}
+								seatchValue={searchValue}
+								setSearch={setSearch}
+								onClickDropDownFilter={onClickDropDownFilter}
+								onResetHistory={onResetHistory}
+							/>
+						) : (
+							<div className="container text-center">
+								<h3>Please login to see content!</h3>
+							</div>
+						)
+					}
 				/>
 
 				<Route

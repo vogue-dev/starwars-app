@@ -10,7 +10,7 @@ const Search = React.memo(function Search(params) {
 					value={params.searchValue}
 					onChange={(e) => params.filterFilms(e)}></input>
 				<FitlerDropDown
-					data={params.filtered}
+					data={params.data}
 					isDroppedDown={params.isDroppedDown}
 					setDropDownClose={params.setDropDownClose}
 					setSearchHistory={params.setSearchHistory}
