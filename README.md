@@ -1,5 +1,5 @@
 Реализация тестового задания </br>
-<a href='https://vogue-dev.github.io/starwars-app/#/' target='_blank'>Открыть</a>
+<a href='https://vogue-dev.github.io/starwars-app/#/' target="_blank">Открыть</a>
 
 <h1>React.js + GraphQL Challenge</h1>
 <h2>Hello Stranger ;-)</h2>
