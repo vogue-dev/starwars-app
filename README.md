@@ -1,6 +1,5 @@
 Реализация тестового задания </br>
-github - https://github.com/vogue-dev/starwars-app </br>
-gitPaged - https://vogue-dev.github.io/starwars-app/#/
+<a href='https://vogue-dev.github.io/starwars-app/#/' target='_blank'>Открыть</a>
 
 <h1>React.js + GraphQL Challenge</h1>
 <h2>Hello Stranger ;-)</h2>
