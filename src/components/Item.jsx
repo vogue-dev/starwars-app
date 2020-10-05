@@ -1,4 +1,5 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 
 const Item = React.memo(function Item({ eachPerson }) {
 	let gender = eachPerson.gender;
@@ -22,14 +23,16 @@ const Item = React.memo(function Item({ eachPerson }) {
 
 	return (
 		<div className="item col-sm-12 col-md-6 col-lg-4">
-			<img src={imgSrc} alt=""></img>
+			<div className="item__wrapper">
+				<img src={imgSrc} alt=""></img>
 
-			<div>
 				<div>
-					<b>{eachPerson.name}</b>
+					<div>
+						<b>{eachPerson.name}</b>
+					</div>
+					<div>Gender: {eachPerson.gender}</div>
+					<div>Height: {eachPerson.height} sm</div>
 				</div>
-				<div>Gender: {eachPerson.gender}</div>
-				<div>Height: {eachPerson.height} sm</div>
 			</div>
 		</div>
 	);

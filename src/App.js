@@ -7,8 +7,11 @@ import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import Error404 from './pages/Error404';
 import Header from './components/Header';
+// import TestContext from './components/TestContext';
 
 import './scss/app.scss';
+
+export const testDataContext = React.createContext();
 
 const ALL_PERSONS = gql`
 	query getPerson {
@@ -34,13 +37,14 @@ const App = () => {
 	let [searchValue, setSearch] = useState('');
 	let [filtered, setFilter] = useState([]);
 	let [searchHistory, setSearchHistory] = useState([]);
+	let [personID, setPersonID] = useState('');
 
 	const handleChange = (e) => {
 		const value = e.target.value;
 		const name = e.target.name;
 		if (name === 'login') {
 			setLogin(value);
-			setFilter(data.allPeople.people);
+			data && setFilter(data.allPeople.people);
 		} else setPass(value);
 	};
 
@@ -117,6 +121,16 @@ const App = () => {
 						)
 					}
 				/>
+
+				{/* <Route
+					exact
+					path="/login"
+					render={() => (
+						<testDataContext.Provider value={'TEST'}>
+							<TestContext />
+						</testDataContext.Provider>
+					)}
+				/> */}
 
 				<Route
 					exact

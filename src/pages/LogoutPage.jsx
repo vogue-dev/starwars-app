@@ -10,7 +10,6 @@ const LogoutPage = React.memo(function LogoutPage(params) {
 				setRedirect={params.setRedirect}
 				setSearchHistory={params.setSearchHistory}
 			/>
-			)}
 		</>
 	);
 });
